@@ -1,0 +1,52 @@
+
+/**
+ * @param {作者} author 
+ * @param {关键字} keyword 
+ */
+const getList = (author, keyword) => {
+  // 先返回假数据 (格式是正确的)
+  return [
+    {
+      id: 1,
+      title: '标题A',
+      content: '内容A',
+      createTime: '1562552735407',
+      author: 'gleason',
+    },
+    {
+      id: 2,
+      title: '标题B',
+      content: '内容B',
+      createTime: '1562552735997',
+      author: '张三',
+    }
+  ]
+}
+
+/**
+ * 
+ * @param {id} id 
+ */
+const getDetail = (id) => {
+  // 返回 假数据
+  return [
+    {
+      id: 1,
+      title: '标题A',
+      content: '内容A',
+      createTime: '1562552735407',
+      author: 'gleason',
+    },
+    {
+      id: 2,
+      title: '标题B',
+      content: '内容B',
+      createTime: '1562552735997',
+      author: '张三',
+    }
+  ]
+}
+module.exports = {
+  getList,
+  getDetail,
+}
