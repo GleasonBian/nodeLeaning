@@ -1,7 +1,7 @@
 
 /**
- * @param {作者} author 
- * @param {关键字} keyword 
+ * @param { 作者 } author 
+ * @param { 关键字 } keyword 
  */
 const getList = (author, keyword) => {
   // 先返回假数据 (格式是正确的)
@@ -46,7 +46,30 @@ const getDetail = (id) => {
     }
   ]
 }
+
+/**
+ * 
+ * @param { blogData 是一个博客对象, 包含 title content 属性 } blogData 
+ */
+const newBlog = (blogData = {}) => {
+  return {
+    id: 3 // 表示新建博客, 插入到数据表里面的 id
+  }
+}
+
+/**
+ * 
+ * @param { 要更新博客的id } id 
+ * @param { blogData 是一个博客对象, 包含 title, content } blogData 
+ */
+const updateBlog = (id, blogData = {}) => {
+  console.log("TCL: updateBlog -> blogData", blogData)
+  return true
+}
+
 module.exports = {
   getList,
   getDetail,
+  newBlog,
+  updateBlog,
 }
