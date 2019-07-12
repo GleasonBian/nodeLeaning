@@ -1,5 +1,6 @@
 
 /**
+ * 博客 列表
  * @param { 作者 } author 
  * @param { 关键字 } keyword 
  */
@@ -24,11 +25,10 @@ const getList = (author, keyword) => {
 }
 
 /**
- * 
+ * 博客 详情
  * @param {id} id 
  */
 const getDetail = (id) => {
-  // 返回 假数据
   return [
     {
       id: 1,
@@ -48,7 +48,7 @@ const getDetail = (id) => {
 }
 
 /**
- * 
+ * 新建 博客
  * @param { blogData 是一个博客对象, 包含 title content 属性 } blogData 
  */
 const newBlog = (blogData = {}) => {
@@ -58,7 +58,7 @@ const newBlog = (blogData = {}) => {
 }
 
 /**
- * 
+ * 更新 博客
  * @param { 要更新博客的id } id 
  * @param { blogData 是一个博客对象, 包含 title, content } blogData 
  */
