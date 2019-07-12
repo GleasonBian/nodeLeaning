@@ -40,6 +40,12 @@ const getPostData = (req) => {
   console.log("TCL: getPostData -> postData", postData)
   return promise;
 }
+
+/**
+ * 处理 服务 函数
+ * @param {请求消息头} req 
+ * @param {响应消息头} res 
+ */
 const serverHandle = (req, res) => {
   // 设置返回格式 JSON
   res.setHeader('Content-type', 'application/json');
