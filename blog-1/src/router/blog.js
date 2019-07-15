@@ -31,7 +31,7 @@ const handleBlogRouter = (req,res) => {
     if ( result ) {
       return new SuccessModel()
     } else {
-      return new ErrorModel();
+      return new ErrorModel("更新博客失败");
     }
   }
 

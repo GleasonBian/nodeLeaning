@@ -6,38 +6,39 @@ const handleUserRouter = require('./src/router/user')
 
 /**
  * 处理 post data
- * @param {请求消息头} req 
+ * @param {请求消息头} req
  */
 const getPostData = (req) => {
   const promise = new Promise( (resolve, reject) => {
+
     // 请求 方法不是 post 直接 返回 空对象
-    if ( req.method !== 'PSOT') {
-      console.log("TCL: getPostData -> req.method", req.method)
+    if ( req.method !== 'POST') {
       resolve( {} )
       return
     }
+
     // 请求 头 类型 不是 application/json 直接返回 空对象
-    if ( req.headers['content-type'] !== 'application/json') {
-      console.log("TCL: getPostData -> req.headers['content-type']", req.headers['content-type'])
+    if ( req.headers['content-type'] !== 'application/json' ) {
       resolve( {} )
       return
     }
-    // 处理 post 请求 数据 post data
+
+    // 处理 post 请求数据 post data
     let postData = '';
     req.on('data', chunk => {
       postData += chunk.toString();
     })
+    
     req.on('end', ()=>{
-      // postdata 没有数据 返回 空
+      // postData 没有数据 返回 空
       if (!postData) {
         resolve({})
         return 
       }
       resolve( JSON.parse( postData ) )
     })
-    
+    console.log("TCL: getPostData -> postData", postData)
   })
-  console.log("TCL: getPostData -> postData", postData)
   return promise;
 }
 
