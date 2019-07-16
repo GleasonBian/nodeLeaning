@@ -63,14 +63,22 @@ const newBlog = (blogData = {}) => {
  * @param { blogData 是一个博客对象, 包含 title, content } blogData 
  */
 const updateBlog = (id, blogData = {}) => {
-  console.log("TCL: updateBlog -> id", id)
-  console.log("TCL: updateBlog -> blogData", blogData)
+  if (id) 
+    return true
+  else 
+    return false
+}
+/**
+ * 
+ * @param {需要删除博客的id} id 
+ */
+const deleteBlog = (id) => {
   return true
 }
-
 module.exports = {
   getList,
   getDetail,
   newBlog,
   updateBlog,
+  deleteBlog
 }
