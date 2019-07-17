@@ -1,4 +1,5 @@
-
+// 引入 sql 查询模块
+const { exec } require('../config/db')
 /**
  * 博客 列表
  * @param { 作者 } author 
@@ -6,22 +7,7 @@
  */
 const getList = (author, keyword) => {
   // 先返回假数据 (格式是正确的)
-  return [
-    {
-      id: 1,
-      title: '标题A',
-      content: '内容A',
-      createTime: '1562552735407',
-      author: 'gleason',
-    },
-    {
-      id: 2,
-      title: '标题B',
-      content: '内容B',
-      createTime: '1562552735997',
-      author: '张三',
-    }
-  ]
+  return []
 }
 
 /**
