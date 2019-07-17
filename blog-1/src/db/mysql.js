@@ -1,10 +1,13 @@
 // 引入 MYSQL 插件
 const mysql = require('mysql');
 // 引入 MYSQL 配置
-const { MYSQL_CONFIG } = require('../config/db');
+const  MYSQL_CONFIG = require('../conf/db');
 
 // 创建链接对象
 const con = mysql.createConnection(MYSQL_CONFIG);
+
+// 建立链接
+con.connect();
 
 // 统一执行 sql 函数
 function exec(sql) {
@@ -21,5 +24,5 @@ function exec(sql) {
 }
 
 module.exports = {
-  exec 
+  exec
 }

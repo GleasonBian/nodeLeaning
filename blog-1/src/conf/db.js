@@ -1,5 +1,4 @@
 const env = process.env.NODE_ENV // 环境参数
-
 // 配置
 let MySQL_CONFIG;
 
@@ -13,7 +12,7 @@ if ( env === 'dev' ) {
   }
 }
 
-if ( evn === 'production' ) {
+if ( env === 'production' ) {
   MySQL_CONFIG = {
     host: 'localhost',
     user: 'root',
@@ -22,7 +21,5 @@ if ( evn === 'production' ) {
     database: 'myblog'
   }
 }
-
-module.exports = {
-  MySQL_CONFIG
-}
+module.exports =  MySQL_CONFIG
+ 
