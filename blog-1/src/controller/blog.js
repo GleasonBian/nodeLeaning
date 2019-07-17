@@ -1,13 +1,23 @@
 // 引入 sql 查询模块
-const { exec } require('../config/db')
+const { exec } = require('../config/db')
 /**
  * 博客 列表
  * @param { 作者 } author 
  * @param { 关键字 } keyword 
  */
 const getList = (author, keyword) => {
-  // 先返回假数据 (格式是正确的)
-  return []
+  // 为什么 where 1=1?  常用小技巧 防止 不确定值导致 sql 拼接 语法错误 进而 程序报错
+  let sql = `select * from blogs where 1=1 `
+  if ( author ) 
+    sql += `and author='${author}' `
+
+  if ( keyword ) 
+    sql += `and title like '%${keyword}%' `
+  
+  sql += `order by createtime desc;`
+
+  // 返回 promise
+  return exec(sql);
 }
 
 /**
