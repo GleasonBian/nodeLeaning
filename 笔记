@@ -7,3 +7,38 @@
 
 MySql 下载地址: https://dev.mysql.com/downloads/mysql/
 MySql workbench: https://dev.mysql.com/downloads/workbench/
+root@localhost: Rk6.yKGOfy4Y
+
+use myblog;
+-- show tables;
+
+-- 插入
+-- insert into users(username,`password`,realname)values('lisi','123','李四');
+
+-- 查询
+-- select id,username from users
+-- 并且
+-- select * from users where username='zhangsan' and `password`='123';
+-- 或者
+-- select * from users where username='zhangsan' and `password`='123';
+-- 模糊
+-- select * from users where `password` like '%1%';
+-- 排序
+-- select * from users where `password` like '%1%' order by id desc;
+-- 更新
+-- update users set realname='李四2' where username='lisi';
+-- 安全模式
+-- SET SQL_SAFE_UPDATES = 0;
+-- 删除
+-- delete from users where username='lisi';
+-- 增加列不能为空
+alter table users add state int not null;
+UPDATE `myblog`.`users`
+SET
+`state` = 1
+WHERE `id` =1;
+
+select * from users;
+
+-- 列设置默认值
+-- ALTER TABLE users ADD CONSTRAINT    DEFAULT   1   FOR   字段名
