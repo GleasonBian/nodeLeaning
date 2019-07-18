@@ -1,8 +1,10 @@
+
+// 引用 exec 函数
+const { exec } = require('../db/mysql');
+
+
 const loginCheck = (username, password) => {
-  if (username === 'gleason' && password === '123') {
-    return true
-  }
-  return false
+  const sql = `select username, realname from users where `
 }
 
 module.exports = {

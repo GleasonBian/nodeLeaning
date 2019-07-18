@@ -7,7 +7,9 @@ const { exec } = require('../db/mysql')
  */
 const getList = (author, keyword) => {
   // 为什么 where 1=1?  常用小技巧 防止 不确定值导致 sql 拼接 语法错误 进而 程序报错
-  let sql = `select * from blogs where 1=1 `// 注意 sql 语句之后有空格
+  // 注意 sql 语句之后有空格
+  let sql = `select * from blogs where 1=1 `
+
   if ( author ) 
     sql += `and author='${author}' `
 
@@ -25,22 +27,10 @@ const getList = (author, keyword) => {
  * @param {id} id 
  */
 const getDetail = (id) => {
-  return [
-    {
-      id: 1,
-      title: '标题A',
-      content: '内容A',
-      createTime: '1562552735407',
-      author: 'gleason',
-    },
-    {
-      id: 2,
-      title: '标题B',
-      content: '内容B',
-      createTime: '1562552735997',
-      author: '张三',
-    }
-  ]
+  const sql = `select * from blogs where id='${id}';`
+  return exec(sql).then(rows => {
+    return rows[0];
+  })
 }
 
 /**
@@ -48,9 +38,20 @@ const getDetail = (id) => {
  * @param { blogData 是一个博客对象, 包含 title content 属性 } blogData 
  */
 const newBlog = (blogData = {}) => {
-  return {
-    id: 3 // 表示新建博客, 插入到数据表里面的 id
-  }
+  const title = blogData.title;
+  const content = blogData.content;
+  const author = blogData.author;
+  const createtime = Date.now();
+  const sql = `
+    insert into blogs (title, content, createtime, author)
+    value('${title}', '${content}', '${createtime}', '${author}')
+  `
+  // 执行 exec() 返回 操作结果
+  return exec(sql).then(insertData => {
+    return {
+      id: insertData.insertId
+    }
+  })
 }
 
 /**
@@ -59,17 +60,32 @@ const newBlog = (blogData = {}) => {
  * @param { blogData 是一个博客对象, 包含 title, content } blogData 
  */
 const updateBlog = (id, blogData = {}) => {
-  if (id) 
-    return true
-  else 
+  const title = blogData.title;
+  const content = blogData.content;
+  const sql = `
+    update blogs set title='${title}', content='${content}' where id='${id}'
+  `
+  return exec(sql).then(updateData => {
+    console.log("TCL: updateBlog -> updateData", updateData)
+    if (updateData.affectedRows > 0) {
+      return true
+    }
     return false
+  })
 }
 /**
  * 
  * @param {需要删除博客的id} id 
  */
-const deleteBlog = (id) => {
-  return true
+const deleteBlog = (id,author) => {
+  const sql = `delete from blogs where id='${id}' and author='${author}'`;
+  return exec(sql).then(deleteData => {
+    console.log("TCL: deleteBlog -> deleteData", deleteData)
+    if (deleteData.affectedRows > 0) {
+      return true
+    }
+    return false
+  })
 }
 module.exports = {
   getList,
