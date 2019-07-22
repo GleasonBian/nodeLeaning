@@ -42,3 +42,11 @@ select * from users;
 
 -- 列设置默认值
 -- ALTER TABLE users ADD CONSTRAINT    DEFAULT   1   FOR   字段名
+
+什么是 cookie
+存储再浏览器的一段字符串(最大5Kb)
+跨域不共享
+格式 k1=v1; k2=v2; k3=v3; 因此可以存储结构化数据
+每次发送 http 请求, 会将请求域得cookie一起发送给server
+server 可以修改 cookie 并返回给浏览器
+浏览器中也可以通过 JavaScript 修改 cookie (有限制)
