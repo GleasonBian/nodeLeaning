@@ -56,6 +56,17 @@ const serverHandle = (req, res) => {
 
   // 解析 query
   req.query = queryString.parse(url.split('?')[1])
+  // 解析 cookie
+  req.cookie = {}
+  const cookieStr = req.headers.cookie || ""
+  cookieStr.split(';').forEach(element => {
+    if(!element) return
+    const arr = element.split('=');
+    const key = arr[0];
+    const val = arr[1];
+    req.cookie[key] = val;
+  });
+  console.log('req.cookie',req.cookie);
 
   // 处理 post data
   getPostData(req).then( postData => {
@@ -70,12 +81,6 @@ const serverHandle = (req, res) => {
       return
     }
 
-    // 处理 user 路由
-    // const userData = handleUserRouter(req, res)
-    // if (userData) {
-    //   res.end( JSON.stringify(userData) );
-    //   return
-    // }
     const userResult = handleUserRouter(req,res)
     if (userResult) {
       userResult.then(userData => {
